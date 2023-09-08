@@ -1,0 +1,32 @@
+---
+title: "test_select"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fxtas)
+```
+
+```{r}
+iris |> 
+  as_tibble() |> 
+  summarize(
+    across(
+      contains("Sepal") & !contains("Width"),
+    .fn = mean
+  ))
+```
+
+```{r}
+iris %>%
+  tibble() |> 
+  mutate(across(where(is.double) & !c(Petal.Length, Petal.Width), round))
+```
+
+

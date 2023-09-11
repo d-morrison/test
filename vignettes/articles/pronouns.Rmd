@@ -1,0 +1,37 @@
+---
+title: "pronouns"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+```{r}
+
+cutoffs = 
+  c(Sepal.Length = 5,
+    Sepal.Width = 3.5)
+iris %>%
+  tibble() |> 
+  mutate(
+    across(
+      contains("Sepal"),
+      .fns = 
+        ~ if_else(
+          .x > cutoffs[cur_column()],
+          paste(">", cutoffs[cur_column()]),
+          paste("<=", cutoffs[cur_column()])) |> 
+        factor() |> 
+        relevel(ref = paste("<=", cutoffs[cur_column()])),
+      .names = "{.col}*"
+    )
+  )
+```
+

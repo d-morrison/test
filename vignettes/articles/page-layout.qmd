@@ -1,0 +1,55 @@
+---
+title: "page-layout"
+format: 
+  html:
+    page-layout: full
+    toc: true
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+#| column: screen-inset
+#| label: "confusion matrices-4"
+#| layout: [[3,2,2,2]]
+#| fig-height: 8
+#| fig-cap: "Confusion Matrices: 4 subgroups"
+#| fig-subcap:
+#|   - "Group 1"
+#|   - "Group 2"
+#|   - "Group 3"
+#|   - "Group 4"
+library(ggplot2)
+set.seed(1)
+mtcars2 <- transform(mtcars, mpg = ifelse(runif(32) < 0.2, NA, mpg))
+ggplot(mtcars2, aes(wt, mpg)) +
+  geom_point() + theme(aspect.ratio = 1/2)
+ggplot(mtcars2, aes(wt, mpg)) +
+  geom_point()
+ggplot(mtcars2, aes(wt, mpg)) +
+  geom_point()
+ggplot(mtcars2, aes(wt, mpg)) +
+  geom_point()
+
+```
+

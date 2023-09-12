@@ -3,7 +3,7 @@ title: "page-layout"
 format: 
   html:
     page-layout: full
-    toc: true
+    toc: false
 editor: visual
 ---
 
@@ -26,13 +26,24 @@ You can add options to executable code like this
 2 * 2
 ```
 
+```{r, fig.width = 20}
+#| column: screen
+library(ggplot2)
+set.seed(1)
+mtcars2 <- transform(mtcars, mpg = ifelse(runif(32) < 0.2, NA, mpg))
+print(ggplot(mtcars2, aes(wt, mpg)) +
+  geom_point())
+```
+
+
 The `echo: false` option disables the printing of code (only output is displayed).
 
 ```{r}
-#| column: screen-inset
+#| column: screen
 #| label: "confusion matrices-4"
-#| layout: [[3,2,2,2]]
+#| layout: [[2,3,2,2]]
 #| fig-height: 8
+#| out-height: 5in
 #| fig-cap: "Confusion Matrices: 4 subgroups"
 #| fig-subcap:
 #|   - "Group 1"
@@ -43,7 +54,7 @@ library(ggplot2)
 set.seed(1)
 mtcars2 <- transform(mtcars, mpg = ifelse(runif(32) < 0.2, NA, mpg))
 ggplot(mtcars2, aes(wt, mpg)) +
-  geom_point() + theme(aspect.ratio = 1/2)
+  geom_point()
 ggplot(mtcars2, aes(wt, mpg)) +
   geom_point()
 ggplot(mtcars2, aes(wt, mpg)) +

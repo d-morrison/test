@@ -4,3 +4,5 @@
 .httr-oauth
 .DS_Store
 .quarto
+vignettes/articles/*_files/
+vignettes/*_files/

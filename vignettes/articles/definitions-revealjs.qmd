@@ -1,0 +1,54 @@
+---
+title: "definitions in revealjs"
+format: 
+  revealjs:
+    number-sections: true
+  html:
+    number-sections: true
+editor: source
+---
+
+# Section 1
+
+some text
+
+## definition 1
+
+:::{#def-density}
+## density function
+
+The density function $f(t)$ for a random variable $T$ at value $t$ can be defined as the derivative of the cumulative probability function $P(T\le t)$; that is:
+
+$$f(t) = \frac{d}{dt} \Pr(T\le t)$$
+
+:::
+
+# Section 2
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+:::{#def-hazard}
+## Hazard function
+
+The hazard function for a random variable $T$ at value $t$ is the conditional density of $T$ at $t$, given $T\ge t$; that is:
+
+$$h(t) = p(T=t|T\ge t)$$
+
+:::

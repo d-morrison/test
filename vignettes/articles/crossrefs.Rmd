@@ -1,0 +1,29 @@
+---
+title: "crossrefs"
+number-sections: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fxtas)
+```
+
+# Introduction {#sec-introduction}
+
+test
+
+# Methods
+
+## Data
+
+We use the data in @sec-statmethods.
+
+## Statistical Methods {#sec-statmethods}
+
+See @sec-introduction

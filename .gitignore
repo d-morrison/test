@@ -6,3 +6,4 @@
 .quarto
 vignettes/articles/*_files/
 vignettes/*_files/
+inst/doc

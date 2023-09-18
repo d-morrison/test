@@ -1,0 +1,24 @@
+---
+title: combine qmds
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+# main section 1
+
+Test 123.
+
+{{< include more-stuff.qmd >}}

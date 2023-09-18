@@ -1,0 +1,16 @@
+---
+# title: more stuff title
+format:
+  html:
+    toc: true
+    number-sections: true
+    shift-heading-level-by: 2
+---
+
+# more stuff
+
+## section 1
+
+### subsection 1
+
+Here's more content from "more-stuff.Rmd".

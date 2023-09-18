@@ -14,3 +14,7 @@ Imports:
 Config/Needs/website: rmarkdown
 URL: https://github.com/d-morrison/test
 BugReports: https://github.com/d-morrison/test/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

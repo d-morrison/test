@@ -1,6 +1,10 @@
 ---
 title: "crossrefs"
 number-sections: true
+format: 
+  html:
+    css: custom.scss
+css: custom.scss
 ---
 
 ```{r, include = FALSE}
@@ -10,9 +14,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(fxtas)
+```{=html}
+<style>
+.quarto-figure-center > figure {
+  text-align: center;
+}
+</style>
 ```
+
+## Centering the caption
+
+![I want this to be centered](https://www.r-project.org/logo/Rlogo.png){fit-align="center"}
 
 # Introduction {#sec-introduction}
 
@@ -27,3 +39,14 @@ We use the data in @sec-statmethods.
 ## Statistical Methods {#sec-statmethods}
 
 See @sec-introduction
+See @fig-plot1.
+
+# Results
+
+```{r}
+#| label: fig-plot1
+#| fig-cap: "test 123"
+
+plot(1:10)
+```
+

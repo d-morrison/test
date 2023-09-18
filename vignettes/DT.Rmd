@@ -1,0 +1,35 @@
+---
+title: "DT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{DT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+```{r}
+library(DT)
+library(dplyr)
+penguins = read.csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv") %>%
+  mutate(species = as.factor(species),
+         island = as.factor(island),
+         sex = as.factor(sex))
+datatable(penguins, filter = "top", extensions = 'Buttons',
+          options = list(scrollX=TRUE, lengthMenu = c(5,10,15),
+                           paging = TRUE, searching = TRUE,
+                           fixedColumns = TRUE, autoWidth = TRUE,
+                           ordering = TRUE, dom = 'tB',
+                           buttons = c('copy', 'csv', 'excel','pdf')))
+```
+

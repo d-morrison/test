@@ -5,6 +5,10 @@ editor: visual
 ---
 
 ```{r}
+# from: 
+# https://stackoverflow.com/questions/50039186/add-download-buttons-in-dtrenderdatatable
+# and 
+# https://rpubs.com/mdlama/quarto-example
 library(DT)
 library(dplyr)
 penguins = read.csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv") %>%

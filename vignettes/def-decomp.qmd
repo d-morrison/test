@@ -1,0 +1,13 @@
+---
+title: "def-decomp"
+format: html
+editor: visual
+---
+
+Here's a definition that's stored in another file:
+
+:::{#def-decomp}
+{{< include some-random-stuff.qmd >}}
+:::
+
+It works!

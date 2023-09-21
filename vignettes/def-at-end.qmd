@@ -1,0 +1,24 @@
+---
+title: "def-at-end"
+format: html
+editor: visual
+---
+
+Can a definition tag go at the end of the div?
+
+
+:::{#def-at-start}
+
+Here's a definition with the tag at the start (does work).
+
+:::
+
+
+:::
+
+Here's a definition with the tag at the end (doesn't work).
+
+:::{#def-at-end}
+
+
+

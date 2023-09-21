@@ -1,0 +1,21 @@
+<https://tex.stackexchange.com/questions/228724/how-do-i-make-tikz-make-a-curved-arrow-from-one-node-to-another-when-my-nodes-ar>
+
+```{r, engine='tikz'}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[->,>=stealth',auto,node distance=3cm,
+  thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (1) {a};
+  \node[main node] (2) [right of=1] {b};
+  \node[main node] (3) [right of=2] {c};
+  \node[main node] (4) [right of=3] {d};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [right] {} (2)
+    (2) edge node [right] {} (3)
+    (3) edge node [right] {} (4)
+    (4) edge[bend right] node [left] {} (1);
+\end{tikzpicture}
+```
+

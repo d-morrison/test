@@ -1,6 +1,6 @@
 ---
 title: "logistic"
-format: pdf
+format: html
 editor: visual
 ---
 
@@ -8,12 +8,28 @@ editor: visual
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{decorations.pathreplacing}
-\begin{tikzpicture}
+\begin{tikzpicture}[decoration={brace,raise=2pt}]
+  \node [rectangle] (pi) {$\pi$};
+  \node (omega) [right of=pi] {$\omega$};
+  \node (eta) [right of=omega] {Test $\eta$};
+  (pi) edge [right] {} (omega) 
+ \draw [-latex] (pi.north east) to (omega.north west);  
+  \draw [-latex] (omega.south west) to (pi.south east);  
+
+\end{tikzpicture}
+```
+
+```{r, engine = 'tikz'}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{tikzpicture}[decoration={brace,raise=2pt}]
 \node [rectangle] (pop) {Population$\beta = \int_{t=0}^\infty x^2dx$};
   \node [ellipse] (y1) [below of=pop] {$y_1$};
-  \node [ellipse] (y2) [left of=y1] {$y_1$};
-  \draw [-latex] (pop) to (y1);
-  \draw[decorate] (y1.south west) -- (y2.south east) node[midway,below=3pt](ABC){ABCDEFG};
+  \node [ellipse] (y2) [left of=y1] {$y_2$};
+  \draw  [arrow] (pop.east) to (y1.east);
+  \draw[decorate] (y1.south east) -- (y2.south west) node[midway,below=3pt](ABC){ABCDEFG};
 
 \end{tikzpicture}
 ```

@@ -1,0 +1,20 @@
+---
+title: "logistic"
+format: pdf
+editor: visual
+---
+
+```{r, engine = 'tikz'}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations.pathreplacing}
+\begin{tikzpicture}
+\node [rectangle] (pop) {Population$\beta = \int_{t=0}^\infty x^2dx$};
+  \node [ellipse] (y1) [below of=pop] {$y_1$};
+  \node [ellipse] (y2) [left of=y1] {$y_1$};
+  \draw [-latex] (pop) to (y1);
+  \draw[decorate] (y1.south west) -- (y2.south east) node[midway,below=3pt](ABC){ABCDEFG};
+
+\end{tikzpicture}
+```
+

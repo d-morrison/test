@@ -8,13 +8,16 @@ editor: visual
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{decorations.pathreplacing}
-\begin{tikzpicture}[decoration={brace,raise=2pt}]
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[->,>=stealth',auto,decoration={brace,raise=2pt}]
   \node [rectangle] (pi) {$\pi$};
   \node (omega) [right of=pi] {$\omega$};
   \node (eta) [right of=omega] {Test $\eta$};
-  (pi) edge [right] {} (omega) 
- \draw [-latex] (pi.north east) to (omega.north west);  
-  \draw [-latex] (omega.south west) to (pi.south east);  
+  \path[every node/.style={font=\sffamily\small}]
+  (pi) edge [bend right] (omega)
+  (omega) edge [bend left] (pi);
+  \draw [->] (omega) to [out=150,in=30] (pi);
+ 
 
 \end{tikzpicture}
 ```

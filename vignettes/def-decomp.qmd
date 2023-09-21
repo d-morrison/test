@@ -11,3 +11,9 @@ Here's a definition that's stored in another file:
 :::
 
 It works!
+
+How about this?
+
+{{< include def-decomp2.qmd >}}
+
+It also works.

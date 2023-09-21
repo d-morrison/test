@@ -1,0 +1,4 @@
+:::{#def-decomp2}
+
+Here's a definition with tag inside the chunk file.
+:::

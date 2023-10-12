@@ -1,0 +1,29 @@
+---
+title: "multidimensional-table-pander"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{multidimensional-table-pander}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+from <https://www.r-bloggers.com/2014/10/pander-0-5-0-the-next-generation-of-markdown-tables-in-r/> 
+
+```{r}
+library(pander)
+pander(with(mtcars, table(gear, am, carb)), style = 'simple')
+
+```
+
+(not great; needs dividing lines, etc)

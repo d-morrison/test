@@ -1,0 +1,59 @@
+---
+title: "test"
+output:
+  bookdown::html_document2: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+# library(kableExtra)
+library(dplyr)
+```
+
+```{=latex}
+\begin{tabular}{ll}
+A & B \\
+A & B \\
+\end{tabular}
+```
+
+test123
+45
+
+
+The general form of a two-by-two table is shown in \@ref(tab:df-print)
+
+|               | Event | Non-Event | Total
+|-------------- | ------ | ---------- | ----- 
+|Exposed        | a      | b | a+b
+|Non-exposed    | c      | d | c+d
+|Total         | a+c   | b+d | a+b+c+d
+
+: A generic 2x2 table (\#tab:df-print)
+
+this is a test \@ref(tab:df).
+
+Table: (\#tab:df) The possible values of the `df_print` option for the `html_document` format.
+
+| Option  | Description  |
+|------------|-------------------------------------------|
+| default  | Call the `print.data.frame` generic method |
+| kable  | Use the `knitr::kable` function |
+| tibble  | Use the `tibble::print.tbl_df` function |
+| paged  |  Use `rmarkdown::paged_table` to create a pageable table |
+| A custom function | Use the function to create the table |
+
+See Table \@ref(tab:mtcars)
+
+```{r mtcars}
+knitr::kable(mtcars[1:5, 1:5], caption = "A caption")
+```

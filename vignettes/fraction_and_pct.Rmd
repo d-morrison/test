@@ -1,0 +1,44 @@
+---
+title: "fraction_and_pct"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fraction_and_pct}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+Some nonsense:
+
+$8/100 \approx 1/12$, and $8+12 = 20$. Is this a consistent pattern? No, in fact there are only a small range of values $x$ where the relationship $100x + 1/x \approx 20$ holds:
+
+
+```{r}
+plot(function(x) x*100 + 1/x, xlim = c(0,1), col = 'red')
+abline(v = .08, col = 'green')
+```
+
+The exact solution is:
+
+$$
+\begin{aligned}
+100x + 1/x &= 20\\
+100x^2 + 1 &= 20x\\
+100x^2 -20x + 1 &= 0\\
+x &\in \frac{20\pm \sqrt{400-4*100*1}}{200}\\
+x &\in \frac{20\pm \sqrt{0}}{200}\\
+x &= \frac{20}{200}\\
+x &= .1\\
+\end{aligned}
+$$
+

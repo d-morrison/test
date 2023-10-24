@@ -1,0 +1,71 @@
+---
+title: "crossrefs"
+format: 
+  html:
+    number-sections: true
+---
+
+# Heading 1
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+Here's an explicit link to a figure: @fig-plots. Here's an implicit [link](#fig-plots). Here's a link to a subfigure: @fig-plots-1
+
+```{r}
+#| label: fig-plots
+#| fig-cap: "Here's a plot caption"
+#| layout-ncol: 2
+#| fig-subcap:
+#|   - "Test"
+#|   - "test 2"
+#| message: false
+#| echo: false
+#| warning: false
+
+library(ggplot2)
+library(plotly)
+library(dplyr)
+plot1 = palmerpenguins::penguins |> 
+  dplyr::filter(species == "Adelie") |> 
+  ggplot(
+    aes(x = bill_length_mm , y = body_mass_g)) +
+  geom_point() + 
+  xlab("Bill length (mm)") + 
+  ylab("Body mass (g)")
+print(plot1)
+
+plot2 = palmerpenguins::penguins |> 
+  ggplot(
+    aes(x = bill_length_mm , 
+        y = body_mass_g,
+        color = species
+    )
+  ) +
+  geom_point() +
+  stat_smooth(
+    method = "lm",
+    formula = y ~ x,
+    geom = "smooth") +
+  xlab("Bill length (mm)") + 
+  ylab("Body mass (g)")
+
+print(plot2)
+```
+
+
+Here's a reference to an appendix section: @sec-subgroups.
+
+# Appendix {.appendix}
+
+## Detecting latent subgroups {.appendix #sec-subgroups }
+
+some content

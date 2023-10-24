@@ -1,0 +1,31 @@
+---
+title: "crossrefs"
+output: 
+  rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{crossrefs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Heading 1
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+Here's an explicit link to a figure: @fig-one. Here's an implicit [link](@fig-one).
+
+```{r}
+#| label: fig-one
+#| fig-cap: Here's a plot caption
+plot(1:10)
+```
+

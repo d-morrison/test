@@ -1,0 +1,32 @@
+---
+title: "pnorm-rounding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pnorm-rounding}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+```{r}
+`P(y|t,c) 1` = pnorm(3, -2.14808, 0.4450131) - pnorm(2, -2.14808, 0.4450131)
+`P(y|t,c) 2` = pnorm(2, -2.14808, 0.4450131, lower.tail = FALSE) - pnorm(3, -2.14808, 0.4450131, lower.tail = FALSE)
+ `P(C=c|t)` = 0.9105781
+ `P(c,y|t) 1` = `P(y|t,c) 1` * `P(C=c|t)`
+ `P(c,y|t) 2` = `P(y|t,c) 2` * `P(C=c|t)`
+
+ log(`P(c,y|t) 1`)
+ log(`P(c,y|t) 2`)
+
+```
+

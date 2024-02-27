@@ -1,0 +1,22 @@
+---
+title: "rowsum"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rowsum}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+matrix(1:9, nrow = 3) |> rowsum(group = c(1,2,2))
+```
+
+`rowsum()` actually does column sums, across rows specified by `group`. It's a pretty bad name. No relationship to `rowSums()` apparently?
+

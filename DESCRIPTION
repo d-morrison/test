@@ -17,5 +17,6 @@ URL: https://github.com/d-morrison/test, https://d-morrison.github.io/test/
 BugReports: https://github.com/d-morrison/test/issues
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    units
 VignetteBuilder: knitr

@@ -3,8 +3,6 @@ title: "test"
 format: 
   revealjs:
     scrollable: true
-    echo: true
-    code-fold: true
     auto-stretch: true
 execute:
   warning: false

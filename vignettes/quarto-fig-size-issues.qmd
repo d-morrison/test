@@ -3,7 +3,7 @@ title: "test"
 format: 
   revealjs:
     scrollable: true
-    auto-stretch: true
+    auto-stretch: false
 ---
 
 ## Quarto

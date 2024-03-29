@@ -4,11 +4,6 @@ format:
   revealjs:
     scrollable: true
     auto-stretch: true
-execute:
-  warning: false
-  message: false
-  cache: false
-  freeze: auto  # re-render only when source changes
 ---
 
 ## Quarto

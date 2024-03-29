@@ -1,0 +1,86 @@
+---
+title: "test"
+format: 
+  revealjs:
+    scrollable: true
+    echo: true
+    code-fold: true
+    auto-stretch: true
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## a figure that works
+
+```{r}
+#| label: fig-plot2
+#| fig-cap: "a ggplot figure"
+
+library(ggplot2)
+set.seed(1)
+
+sample_df <- data.frame(
+  group = factor(rep(letters[1:3], each = 10)),
+  value = rnorm(30)
+)
+
+group_means_df <- setNames(
+  aggregate(value ~ group, sample_df, mean),
+  c("group", "group_mean")
+)
+
+ggplot(data = sample_df, mapping = aes(x = group, y = value)) +
+  geom_point() +
+  geom_point(
+    mapping = aes(y = group_mean), data = group_means_df,
+    colour = 'red', size = 3
+  )
+
+```
+
+## a figure that doesn't work
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+```{r}
+#| label: fig-plot3
+#| fig-cap: "another ggplot figure"
+
+library(ggplot2)
+set.seed(1)
+
+sample_df <- data.frame(
+  group = factor(rep(letters[1:3], each = 10)),
+  value = rnorm(30)
+)
+
+group_means_df <- setNames(
+  aggregate(value ~ group, sample_df, mean),
+  c("group", "group_mean")
+)
+
+ggplot(data = sample_df, mapping = aes(x = group, y = value)) +
+  geom_point() +
+  geom_point(
+    mapping = aes(y = group_mean), data = group_means_df,
+    colour = 'red', size = 3
+  )
+
+```

@@ -1,0 +1,15 @@
+---
+title: "section-tags-in-divs"
+format: html
+---
+
+See @sec-example1 and @sec-example2
+
+:::{#exr-example1}
+#### Example 1 {#sec-example1}
+
+::::
+
+#### Example 2 {#sec-example2}
+
+Some text.

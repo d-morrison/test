@@ -12,3 +12,5 @@ docs
 *.tex
 *.aux
 *.pdf
+test_files
+test.html

@@ -1,0 +1,26 @@
+---
+title: "greek-in-colnames"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{greek-in-colnames}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+library(pander)
+library(dplyr)
+```
+
+```{r}
+tibble(`$\\alpha$` = 1, α = 2) |> pander::pander()
+```
+

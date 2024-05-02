@@ -1,0 +1,69 @@
+---
+title: "subfigures"
+format: 
+  docx:
+    toc: false
+    echo: false
+    # fig-format: svg
+    toc-depth: 4
+    # cap-location: top
+    # fig-cap-location: top # causes extra newlines above subcaps in docx
+    tbl-cap-location: top
+    number-sections: true
+    number-depth: 3
+    link-citations: true
+    date: last-modified
+    date-format: "[Last modified:] YYYY-MM-DD: H:mm:ss (A)"
+    embed-resources: true
+    appendix-style: plain
+    mainfont: serif
+editor: visual
+---
+
+```{r}
+x <- "A test label"
+```
+
+:::: {#fig-test layout-ncol=2}
+
+::: {#fig-test-1}
+```{r}
+#| fig-width: 3
+plot(1:10)
+```
+
+`{r} x`
+:::
+
+::: {#fig-test-2}
+```{r}
+#| fig-width: 3
+plot(1:10)
+```
+
+`{r} x`
+:::
+
+`{r} x`
+::::
+
+See @fig-test-2.
+
+{{< pagebreak >}}
+
+```{r}
+temp = "Speed and Stopping Distances of Cars"
+```
+
+```{r}
+#| label: "fig-first-only"
+#| fig-align: center
+#| fig-cap: "Estimated event sequence models, stratified by sex, first visits only"
+#| layout-ncol: 2
+#| fig-subcap:
+#|   - "Males"
+#|   - "Females"
+
+plot(cars)
+plot(pressure)
+```

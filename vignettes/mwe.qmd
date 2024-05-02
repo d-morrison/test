@@ -1,0 +1,34 @@
+---
+title: "MWE"
+format: 
+  docx:
+    echo: false
+    date: last-modified
+    date-format: "[Last modified2:] YYYY-MM-DD: H:mm:ss (A)"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document.
+To learn more about Quarto see <https://quarto.org>.
+
+::: {#fig-r-logos layout-ncol="2"}
+![R Logo](R_logo.svg.png){#fig-r-logo-1}
+
+![R Logo](R_logo.svg.png){#fig-r-logo-2}
+
+Awesome Programming Language Logo.
+:::
+
+{{< pagebreak >}}
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Speed and Stopping Distances of Cars"
+#|   - "Vapor Pressure of Mercury as a Function of Temperature"
+
+plot(cars)
+plot(pressure)
+```
+

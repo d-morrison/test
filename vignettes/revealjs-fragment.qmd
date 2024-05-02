@@ -1,0 +1,68 @@
+---
+title: "test"
+format: 
+  revealjs:
+    incremental: false
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+::: {.fragment}
+Fade in
+:::
+
+::: {.fragment .fade-out}
+Fade out
+:::
+
+::: {.fragment .highlight-red}
+Highlight red
+:::
+
+::: {.fragment .fade-in-then-out}
+Fade in, then out
+:::
+
+:::{.fragment .fade-in-then-semi-out}
+- fade-in-then-semi-out
+
+- fade-in-then-semi-out2
+:::
+
+::: {.fragment .fade-up}
+Slide up while fading in
+:::
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## test semi out {.nonincremental}
+
+:::{.fragment .fade-in-then-semi-out}
+* This course is about *generalized linear models* (for non-Gaussian outcomes)
+:::
+
+:::{.fragment .fade-in-then-semi-out}
+* UC Davis STA 108 ("Applied Statistical Methods: Regression Analysis") is a prerequisite for this course, so everyone here should have some understanding of linear regression already.
+:::
+
+:::{.fragment .fade-in}
+* We will review linear regression to:
+  - make sure everyone is caught up
+  - to provide an epidemiological perspective on model intepretation.
+:::

@@ -1,0 +1,11 @@
+---
+title: "arsenal"
+format: html
+---
+
+```{r, results='asis'}
+library(arsenal)
+data(mockstudy)
+summary(tableby(list(arm, sex) ~ age, data = mockstudy, strata = ps), text = TRUE)
+```
+

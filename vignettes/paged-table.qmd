@@ -1,0 +1,17 @@
+---
+title: "paged-table"
+format: 
+  revealjs: 
+    scrollable: true
+    df-print: paged
+  pdf: 
+    df-print: kable
+editor: visual
+---
+
+## paged table {.smaller}
+
+```{r}
+library(webshot2)
+iris
+```

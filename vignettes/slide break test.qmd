@@ -1,0 +1,17 @@
+---
+title: "Habits"
+author: "John Doe"
+format: 
+  revealjs: default
+  html: default
+---
+
+## header 1
+
+- Turn off alarm
+- Get out of bed
+
+---
+
+- Get in bed
+- Count sheep

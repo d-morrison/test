@@ -1,0 +1,18 @@
+---
+title: "table1"
+format: html
+---
+
+```{r}
+library(dplyr)
+data(starwars)
+
+library(table1)
+starwars |> table1(
+  x = ~ sex | homeworld, 
+  na.is.category = TRUE) 
+
+```
+
+
+

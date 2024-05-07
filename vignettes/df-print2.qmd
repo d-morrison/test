@@ -1,0 +1,39 @@
+```{r}
+kable_print <- function(x, options) {
+  knitr::asis_output(
+    paste(c("", "", knitr::kable(x)), collapse = "\n")
+  )
+}
+
+paged_print <- function(x, options) {
+  knitr::asis_output(
+    rmarkdown:::paged_table_html(x, options = attr(
+      x,
+      "options"
+    )),
+    meta = list(dependencies = rmarkdown::html_dependency_pagedtable())
+  )
+}
+
+knitr::opts_hooks$set(df_print = function(options) {
+  if (options$df_print == "paged") {
+    options$render = paged_print
+  } else if (options$df_print == "kable") {
+    options$render = kable_print
+  }
+  options
+})
+
+```
+
+```{r, df_print = "paged"}
+iris
+```
+
+```{r, df_print = "kable"}
+head(iris)
+```
+
+```{r}
+head(iris)
+```

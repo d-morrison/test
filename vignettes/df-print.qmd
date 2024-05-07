@@ -1,0 +1,23 @@
+---
+format:
+  html:
+    df-print: paged
+---
+
+```{r}
+#| tbl-cap: "`iris` data"
+#| label: tbl-iris1
+
+iris
+```
+
+
+
+```{r}
+#| tbl-cap: "`iris` data"
+#| label: tbl-iris
+
+library(printr)
+iris
+```
+

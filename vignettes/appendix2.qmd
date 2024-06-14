@@ -1,0 +1,84 @@
+---
+title: "Test"
+format: 
+  pdf:
+    number-sections: true
+    number-depth: 4
+    include-in-header:
+      text: |
+        \usepackage{chngcntr}
+  docx:
+    number-sections: true
+    number-depth: 4
+    include-in-header:
+      text: |
+        \usepackage{chngcntr}
+editor: visual
+
+---
+
+# Section 1
+
+Text
+
+# Section 2
+
+Text
+
+See @fig-plot
+
+See @fig-another-plot
+
+see @tbl-my-tab
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+
+# First Appendix {.appendix}
+
+\counterwithin{figure}{section}
+
+\counterwithin{table}{section}
+
+
+## More Results
+
+Text
+
+## Even More Results
+
+Text
+
+\newpage
+
+
+## Plot
+
+```{r}
+#| label: fig-plot
+#| fig-cap: A plot
+
+plot(1:10)
+```
+
+\newpage
+
+```{r}
+#| label: fig-another-plot
+#| fig-cap: Another plot
+
+plot(rnorm(100))
+
+```
+
+\newpage
+
+## Table
+
+```{r}
+#| label: tbl-my-tab
+#| tbl-cap: A table
+
+knitr::kable(head(mtcars))
+```

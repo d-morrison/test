@@ -3,12 +3,17 @@ title: "test"
 format: 
   html:
     number-sections: true
-editor: visual
+    appendix-style: default
+  docx:
+    number-sections: true
+bibliography: test-ref.bib
 ---
 
 # Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+Reference: @little2019statistical.
 
 test 123
 
@@ -29,4 +34,32 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
-# appendix section {.appendix}
+See additional information in @fig-app1.
+
+See also [Supplemental @fig-app1].
+
+See also @-fig-app1.
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+# Appendices {.appendix}
+
+## Acknowledgments {.appendix}
+
+I am grateful for the insightful comments offered by the anonymous peer reviewers at Books & Texts. The generosity and expertise of one and all have improved this study in innumerable ways and saved me from many errors; those that inevitably remain are entirely my own responsibility.
+
+## graph {.appendix}
+
+```{r}
+#| label: fig-app1
+#| fig-cap: "plot 1-10"
+plot(1:10)
+```
+

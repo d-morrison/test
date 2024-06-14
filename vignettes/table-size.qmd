@@ -1,0 +1,48 @@
+---
+title: "Untitled"
+format: 
+  pdf:
+    df-print: kable
+---
+
+```{r}
+#| tbl-cap: "big table"
+#| label: tbl-big
+
+tbl <- 
+  head(mtcars)
+
+tbl
+
+```
+
+---
+
+::: {.smaller}
+
+```{r}
+#| tbl-cap: "small table"
+#| label: tbl-small
+
+tbl
+```
+
+:::
+
+```{r}
+#| tbl-cap: "gt small table"
+#| label: tbl-small-gt
+
+library(gt)
+tbl |> 
+  gt() |> 
+  gt::tab_options(
+    table.font.size = 13, 
+    data_row.padding = gt::px(1), 
+    summary_row.padding = gt::px(1), 
+    grand_summary_row.padding = gt::px(1), 
+    footnotes.padding = gt::px(1), 
+    source_notes.padding = gt::px(1), 
+    row_group.padding = gt::px(1)) |> 
+  gt::cols_width(mpg ~ gt::px(70))
+```

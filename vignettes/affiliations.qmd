@@ -1,7 +1,21 @@
 ---
 title: "Untitled"
 format: html
-editor: visual
+author:
+  name: Josiah Carberry
+  orcid: 0000-0002-1825-0097
+  url: https://en.wikipedia.org/wiki/Josiah_S._Carberry
+  email: josiah@psychoceramics.org
+  corresponding: true
+  affiliation: 
+    - name: Brown University
+      department: Psychoceramics
+      city: Providence
+      state: RI
+      country: US
+      url: www.brown.edu
+      ringgold: 6752
+      isni: 0000000419369094
 ---
 
 ## Quarto
@@ -16,7 +30,7 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this
+You can add options to executable code like this 
 
 ```{r}
 #| echo: false
@@ -24,34 +38,3 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
-
-::: {.solution .content-visible when-profile="solutions"}
-
-hello
-
-:::
-
-::: {.content-visible when-profile="MYPROFILE"}
-This should not appear.
-
-```{r "hidden chunk"}
-message("is this chunk running?")
-# Sys.sleep(15)
-```
-:::
-
-```{r "visible chunk"}
-message("this chunk should run")
-```
-
-```{r}
-OK =  FALSE
-
-```
-
-```{r}
-#| eval: !expr OK
-message("chunk 3")
-```
-
-This content should appear.

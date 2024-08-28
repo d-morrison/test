@@ -1,0 +1,19 @@
+---
+title: "fig-subcap"
+format: html
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+```{r}
+#| label: fig-subcap
+#| fig-cap: "Figure caption"
+#| fig-subcap: "subcaption"
+
+plot(1:10)
+```
+

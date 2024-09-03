@@ -11,3 +11,6 @@ author="Ezra Morrison"}
 [The inclusion criteria were: age 40 years or greater; 
 **`***`Ellery, Glenda, etc: please complete this section and fill in detailed descriptions of the GP and Trax cohorts. Cite refs as needed.`***`**]{.mark} 
 []{.comment-end}
+
+[The inclusion criteria were: age 40 years or greater; 
+**`***`Ellery, Glenda, etc: please complete this section and fill in detailed descriptions of the GP and Trax cohorts. Cite refs as needed.`***`**]{.mark} 

@@ -1,0 +1,11 @@
+---
+title: "inline-r-code-vectors"
+format: html
+---
+
+```{r}
+vec = c(1,2,3)
+```
+
+The numbers are `r vec`.
+Or in better words, `r and::and(vec)`.

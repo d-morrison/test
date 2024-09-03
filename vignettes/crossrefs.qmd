@@ -15,10 +15,15 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(test)
 ```
 
-Here's an explicit link to a figure: @fig-plots. Here's an implicit [link](#fig-plots). Here's a link to a subfigure: @fig-plots-1
+Here's an explicit link to a figure: @fig-plots or [@fig-plots].
+Here's one in parentheses: (@fig-plots).
+
+Here's an implicit [link](#fig-plots). Here's a link to a subfigure: @fig-plots-1.
+
+Here's two references: @fig-plots-1 and [(b)](#fig-plots-2).
+
 
 ```{r}
 #| label: fig-plots

@@ -2,6 +2,8 @@
 title: "test"
 format: 
   revealjs:
+    echo: true
+    code-fold: true
     scrollable: true
     auto-stretch: false
 ---
@@ -55,11 +57,10 @@ ggplot(data = sample_df, mapping = aes(x = group, y = value)) +
 
 ## a figure that doesn't work
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 ```{r}
 #| label: fig-plot3
 #| fig-cap: "another ggplot figure"
+#| fig-height: 3
 
 library(ggplot2)
 set.seed(1)
@@ -74,11 +75,13 @@ group_means_df <- setNames(
   c("group", "group_mean")
 )
 
-ggplot(data = sample_df, mapping = aes(x = group, y = value)) +
+plot1 = 
+  ggplot(data = sample_df, mapping = aes(x = group, y = value)) +
   geom_point() +
   geom_point(
     mapping = aes(y = group_mean), data = group_means_df,
     colour = 'red', size = 3
   )
 
+print(plot1)
 ```

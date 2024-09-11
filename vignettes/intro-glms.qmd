@@ -1,0 +1,456 @@
+---
+title: "Introduction"
+format:
+  revealjs:
+    theme: dark
+    embed-resources: true
+    fig-cap-location: top
+    html-math-method: mathjax
+    smaller: false
+    number-sections: true
+    progress: true
+    incremental: false
+    number-depth: 2
+    slide-number: true
+    slide-level: 2
+    scrollable: true
+    echo: true
+    # echo: false
+    code-fold: true
+    code-link: true
+    code-summary: "[R code]"
+    # code-overflow: scroll
+    auto-stretch: false
+    # out-width: "50%"
+    # fig-height: 3
+    # fig-width: 7
+    # chalkboard: true
+
+execute:
+  warning: false
+  message: false
+  cache: false
+  freeze: false  # re-render only when source changes
+---
+
+::: {.content-hidden when-format="revealjs"}
+
+## Configuring R {.unnumbered}
+
+Functions from these packages will be used throughout this document:
+
+```{r packages, message = FALSE}
+
+library(ggplot2) # graphics
+library(ggeasy) # help with graphics
+library(plotly) # interactive graphics
+library(dplyr) # manipulate data
+library(tidyr) # Tools to help to create tidy data
+library(haven) # import Stata files
+library(pander) # format tables for markdown
+library(knitr) # format R output for markdown
+library(kableExtra) # more markdown formatting
+library(parameters) # format model output tables for markdown
+library(reactable) # interactive tables
+library(dobson) # datasets from Dobson and Barnett 2018
+library(conflicted) # check for conflicting function definitions
+```
+
+Here are some R settings I use in this document:
+
+```{r options, message=FALSE}
+rm(list = ls()) # delete any data that's already loaded into R
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+pander::panderOptions("table.emphasize.rownames", FALSE)
+options('digits' = 4)
+conflicts_prefer(plotly::filter)
+conflicts_prefer(ggplot2::autoplot)
+```
+
+:::
+
+# Introduction to Epi 204
+
+Welcome to Epidemiology 204: Quantitative Epidemiology III (Statistical Models).
+
+In this course, we will start where Epi 203 left off: with linear regression models.
+
+If you haven't taken Epi 203 or a similar introduction to mathematical statistical inference, please talk to me after class.
+
+## What you should know
+
+Epi 202: probability models for different data types
+
+-   binomial
+-   Poisson
+-   Gaussian
+-   exponential
+
+Epi 203: inference for one or several homogenous populations
+
+* the maximum likelihood inference framework:
+    + likelihood functions
+    + log-likelihood functions
+    + score functions
+    + estimating equations
+    + information matrices
+    + point estimates
+    + standard errors
+    + confidence intervals
+    + hypothesis tests
+    + p-values
+* Hypothesis tests for one, two, and >2 groups:
+    + t-tests/ANOVA for Gaussian models
+    + chi-square tests for binomial and Poisson models
+* Some linear regression
+
+Stat 108: linear regression models
+
+* building models for Gaussian outcomes
+    + multiple predictors
+    + interactions
+* regression diagnostics
+* fundamentals of R programming; e.g.:     
+    + [R for Data Science (Wickham, Cetinkaya-Rundel, Grolemund 2023)](https://r4ds.hadley.nz/)
+    + [Introductory Statistics with R (Dalgaard 2008)](https://link.springer.com/book/10.1007/978-0-387-79054-1)
+* RMarkdown or Quarto for formatting homework
+* LaTeX for writing math in RMarkdown/Quarto
+
+## What we will cover in this course
+
+* Linear (Gaussian) regression models (review and more details)
+
+* Regression models for non-Gaussian outcomes
+    +   binary
+    +   count
+    +   time to event
+
+* Statistical analysis using R
+
+# Regression models
+
+Why do we need them?
+
+*   continuous predictors
+
+*   not enough data to analyze some subgroups individually
+
+## Example: Adelie penguins
+
+```{r}
+
+library(ggplot2)
+library(plotly)
+library(dplyr)
+ggpenguins <- 
+  palmerpenguins::penguins |> 
+  dplyr::filter(species == "Adelie") |> 
+  ggplot(
+    aes(x = bill_length_mm , y = body_mass_g)) +
+  geom_point() + 
+  xlab("Bill length (mm)") + 
+  ylab("Body mass (g)")
+
+```
+
+::: {.content-visible when-format="html"}
+
+```{r}
+#| label: fig-palmer-penguins
+#| fig-cap: "Palmer penguins"
+#| echo: false
+ggpenguins |> ggplotly()
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+```{r}
+#| fig-cap: Palmer penguins
+ggpenguins |> print()
+```
+
+:::
+
+## Linear regression
+
+```{r}
+ggpenguins2 = 
+  ggpenguins +
+  stat_smooth(method = "lm",
+              formula = y ~ x,
+              geom = "smooth")
+
+```
+
+::: {.content-visible when-format="html"}
+
+```{r, echo = FALSE}
+#| fig-cap: Palmer penguins with linear regression fit
+ggpenguins2 |> ggplotly()
+
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+```{r}
+#| echo: false
+#| fig-cap: Palmer penguins with linear regression fit
+ggpenguins2 |> print()
+
+```
+
+:::
+
+## Curved regression lines
+
+```{r}
+
+ggpenguins2 = ggpenguins +
+  stat_smooth(
+    method = "lm",
+    formula = y ~ log(x),
+    geom = "smooth") +
+  xlab("Bill length (mm)") + 
+  ylab("Body mass (g)")
+
+```
+
+::: {.content-visible when-format="html"}
+
+```{r}
+#| echo: false
+ggpenguins2 |> ggplotly()
+
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+```{r}
+ggpenguins2 |> print()
+
+```
+
+:::
+
+## Multiple regression
+
+```{r}
+
+ggpenguins =
+  palmerpenguins::penguins |> 
+  ggplot(
+    aes(x = bill_length_mm , 
+        y = body_mass_g,
+        color = species
+    )
+  ) +
+  geom_point() +
+  stat_smooth(
+    method = "lm",
+    formula = y ~ x,
+    geom = "smooth") +
+  xlab("Bill length (mm)") + 
+  ylab("Body mass (g)")
+```
+
+::: {.content-visible when-format="html"}
+
+```{r}
+#| echo: false
+#| label: fig-penguins-strat
+#| fig-cap: "Palmer penguins - stratified by species"
+ggpenguins |> ggplotly()
+
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+```{r}
+ggpenguins |> print()
+
+```
+
+:::
+
+## Modeling non-Gaussian outcomes
+
+```{r}
+library(glmx)
+data(BeetleMortality)
+beetles = BeetleMortality |>
+  mutate(
+    pct = died/n,
+    survived = n - died
+  )
+
+plot1 = 
+  beetles |> 
+  ggplot(aes(x = dose, y = pct)) +
+  geom_point(aes(size = n)) +
+  xlab("Dose (log mg/L)") +
+  ylab("Mortality rate (%)") +
+  scale_y_continuous(labels = scales::percent) +
+  # xlab(bquote(log[10]), bquote(CS[2])) +
+  scale_size(range = c(1,2))
+```
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-beetles
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
+#| echo: false
+ggplotly(plot1)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| label: fig-beetles2
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
+print(plot1)
+```
+:::
+
+## Why don't we use linear regression?
+
+```{r}
+
+beetles_long = 
+  beetles  |> 
+  reframe(.by = everything(),
+          outcome = c(
+            rep(1, times = died), 
+            rep(0, times = survived))
+  )
+
+lm1 = 
+  beetles_long |> 
+  lm(
+    formula = outcome ~ dose, 
+    data = _)
+
+
+range1 = range(beetles$dose) + c(-.2, .2)
+
+f.linear = function(x) predict(lm1, newdata = data.frame(dose = x))
+
+plot2 = 
+  plot1 + 
+  geom_function(fun = f.linear, aes(col = "Straight line")) +
+  labs(colour="Model", size = "")
+
+```
+
+
+::: {.content-visible when-format="html"}
+```{r}
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
+#| echo: false
+ggplotly(plot2)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| fig-cap: "Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)"
+print(plot2)
+```
+:::
+
+## Zoom out
+
+
+::: {.content-visible when-format="html"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
+ggplotly(plot2 + expand_limits(x = c(1.6, 2)))
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+print(plot2 + expand_limits(x = c(1.6, 2)))
+```
+:::
+
+## log transformation of dose?
+
+```{r}
+
+
+lm2 = 
+  beetles_long |> 
+  lm(formula = outcome ~ log(dose), data = _)
+
+f.linearlog = function(x) predict(lm2, newdata = data.frame(dose = x))
+
+plot3 = plot2 + 
+  expand_limits(x = c(1.6, 2)) +
+  geom_function(fun = f.linearlog, aes(col = "Log-transform dose"))
+
+```
+
+
+::: {.content-visible when-format="html"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
+ggplotly(plot3 + expand_limits(x = c(1.6, 2)))
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+print(plot3 + expand_limits(x = c(1.6, 2)))
+```
+:::
+
+## Logistic regression
+
+```{r}
+
+glm1 = beetles |> 
+  glm(formula = cbind(died, survived) ~ dose, family = "binomial")
+
+f = function(x) predict(glm1, newdata = data.frame(dose = x), type = "response")
+
+plot4 = plot3 + geom_function(fun = f, aes(col = "Logistic regression"))
+
+```
+
+
+::: {.content-visible when-format="html"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+#| echo: false
+ggplotly(plot4)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| fig-cap: Mortality rates of adult flour beetles after five hours' exposure to gaseous carbon disulphide (Bliss 1935)
+print(plot4)
+```
+:::
+
+
+## Three parts to regression models
+
+-   What distribution does the outcome have for a specific subpopulation defined by covariates? (outcome model)
+
+-   How does the combination of covariates relate to the mean? (link function)
+
+-   How do the covariates combine? (linear predictor, interactions)

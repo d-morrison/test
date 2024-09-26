@@ -1,5 +1,7 @@
 ---
-format: pptx
+format: 
+  docx: default
+  pptx: default
 ---
 
 $$\color{red}{x}$$

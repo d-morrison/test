@@ -1,7 +1,14 @@
 ---
 format: html
 ---
-# heading with insert
 
-## {{< include problem-without-heading-marker.qmd >}}
+# assignment 2
+
+## big exercise
+
+### derive the MLE for the Gaussian distribution.
+
+[some details here]
+
+### {{< include problem-without-heading-marker.qmd >}}
 

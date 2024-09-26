@@ -1,0 +1,17 @@
+---
+title: "subfigure-pdf"
+format: pdf
+editor: visual
+---
+
+```{r}
+#| label: tbl-charts
+#| tbl-cap: "Charts"
+#| tbl-subcap: 
+#|   - "Cars"
+#|   - "Pressure"
+#| layout-ncol: 2
+
+head(iris)
+head(iris)
+```

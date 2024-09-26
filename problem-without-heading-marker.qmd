@@ -1,3 +1,9 @@
-heading test
+Derive the MLE
 
-some text
+Derive the MLE for an independent sample from a Bernoulli distribution.
+
+::: callout-note
+
+Show your work.
+
+:::

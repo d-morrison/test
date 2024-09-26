@@ -1,0 +1,5 @@
+---
+format: pptx
+---
+
+$$\color{red}{x}$$

@@ -1,0 +1,16 @@
+---
+title: "text-from-inline-R"
+format: html
+---
+
+## Quarto
+
+```{r}
+event_name = "symptom"
+```
+
+We measured 31 `r event_name`s.
+
+# text in header `r event_name`
+
+did it work?

@@ -1,0 +1,39 @@
+---
+title: "multiline-caption"
+format: html
+editor: visual
+---
+
+## Quarto
+
+```{r}
+#| label: fig-one
+#| fig-cap: |
+#|    **Biomarkers included in analysis.** 
+#|    The first level in column "Defined Ordered Levels" is the "reference level",
+#|    and subsequent levels are considered "clinically elevated" levels.
+#|    Columns "Female" and "Male" list proportions of clinically elevated levels 
+#|    at baseline visit, stratified by sex.
+plot(1:10)
+```
+
+```{r}
+compact_fig_caption = "hello there."
+compact_fig_cap2 = "goodbye here."
+```
+
+
+```{r}
+#| label: fig-two
+#| fig-cap: !expr 
+#|    glue::glue(
+#|      "**Event sequences stratified by CGG repeats among females.**
+#|      **(a)** Estimated event sequences, 
+#|      stratified by CGG repeats (<100 vs 100+).
+#|      {compact_fig_caption} 
+#|      **(b)** Positional differences in estimated event sequence 
+#|      between CGG repeats. {compact_fig_cap2}")
+
+plot(10:1)
+```
+

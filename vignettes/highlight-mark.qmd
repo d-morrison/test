@@ -1,16 +1,18 @@
 ---
-title: "docx-comment"
-format: docx
-editor: visual
+title: "Untitled"
+format: html
 ---
 
+[Target journal: 
+[Brain (Original Articles)](https://academic.oup.com/brain/pages/general_instructions).
+Word limit for main text: 6000.
+Display items: 8]{.mark}.
 
-## [Need citations here]{.comment-start author="Ezra Morrison"} Quarto[]{.comment-end}
+## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
 ## Running Code
-more
 
 When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
@@ -18,7 +20,7 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this
+You can add options to executable code like this 
 
 ```{r}
 #| echo: false

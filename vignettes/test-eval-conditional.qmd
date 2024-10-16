@@ -1,0 +1,16 @@
+---
+format: html
+---
+
+```{r}
+run_conditional = TRUE
+```
+
+```{r}
+#| eval: !expr run_conditional
+x = 1
+```
+
+```{r}
+print(x)
+```

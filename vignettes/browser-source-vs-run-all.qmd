@@ -1,0 +1,17 @@
+---
+title: "browser"
+format: html
+---
+
+```{r}
+1 + 1
+```
+
+```{r}
+browser()
+```
+
+```{r}
+1 + 2
+```
+

@@ -1,0 +1,28 @@
+---
+title: "quantities"
+format: html
+---
+
+```{r}
+library(quantities)
+iris.q <- iris
+for (i in 1:4)
+  quantities(iris.q[,i]) <- list("cm", iris.q[,i] * 0.02)
+head(iris.q)
+iris.q[which(iris.q$Sepal.Length > set_quantities(75, mm)), ]
+```
+
+```{r}
+library(tidyverse)
+iris %>%
+  # first gather, with row numbers as row_id
+  mutate(row_id = 1:n()) %>%
+  pivot_longer(1:4) %>%
+  # assign quantities
+  mutate(value = set_quantities(value, cm, value * 0.05)) %>%
+  # now spread and remove the row_id
+  pivot_wider() %>%
+  select(-row_id) %>%
+  head()
+```
+

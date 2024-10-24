@@ -9,6 +9,7 @@ iris.q <- iris
 for (i in 1:4)
   quantities(iris.q[,i]) <- list("cm", iris.q[,i] * 0.02)
 head(iris.q)
+iris.q = tibble(iris.q)
 iris.q[which(iris.q$Sepal.Length > set_quantities(75, mm)), ]
 ```
 
@@ -24,5 +25,12 @@ iris %>%
   pivot_wider() %>%
   select(-row_id) %>%
   head()
+```
+
+```{r}
+units::set_units(50, kg) * formattable::percent(.3)
+formattable::percent(.3) * units::set_units(50, kg) 
+
+units::set_units(50, kg/mL) * units::set_units(33, milliliter)
 ```
 

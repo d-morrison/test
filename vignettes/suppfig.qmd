@@ -1,0 +1,26 @@
+---
+title: "test"
+format: html
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+---
+
+
+```{r}
+#| label: suppfig-fig1
+#| fig-cap: "a figure"
+plot(1:10)
+```
+
+::: {#suppfig-fig2}
+
+```{r}
+#| fig-cap: "another figure"
+plot(10:1)
+```
+
+:::

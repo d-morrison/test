@@ -38,7 +38,7 @@ See additional information in @fig-app1.
 
 See also [Supplemental @fig-app1].
 
-See also @-fig-app1.
+See also [-@fig-app1].
 
 \setcounter{section}{0}
 \renewcommand{\thesection}{\Alph{section}}

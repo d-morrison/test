@@ -1,0 +1,21 @@
+---
+title: "custom-crossref"
+format: html
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Video
+      key: vid
+---
+
+## Quarto
+
+::: {#vid-cern}
+
+{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}
+
+"CERN: The Journey of Discovery"
+
+:::
+
+In @vid-cern...

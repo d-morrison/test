@@ -1,0 +1,81 @@
+---
+title: "Example"
+format: 
+  html:
+    filters:
+     - at: post-quarto
+       path: appendix_numbering.lua
+    number-sections: true
+
+crossref: 
+  appendix-title: "Banana"
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Supplementary Figure S
+      space-before-numbering: false
+    - kind: float
+      key: supptab
+      reference-prefix: Supplementary Table S
+      space-before-numbering: false
+
+---
+
+# Main Body
+
+## Another Section {#sec-main-1}
+
+See also @sec-main-1, @sec-app1, @suppfig-banana, @supptab-apple, [Supplemental Tables S -@supptab-apple] and @apx-two
+
+# Appendix {.appendix}
+
+## Appendix Section {.appendix #sec-app1}
+
+Something here.
+
+## Appendix Section {#apx-two .appendix}
+
+Content for the appendix.
+
+
+::: {#suppfig-banana}
+
+```{r}
+plot(1:10)
+```
+
+Figure caption
+
+:::
+
+# Appendix 2 {.appendix}
+
+::: {#supptab-apple}
+
+```{r}
+head(iris)
+```
+
+head of iris
+
+:::
+
+::: {#supptab-orange tbl-subcap=true}
+
+windup
+
+```{r}
+head(iris)
+```
+
+## head of iris
+
+```{r}
+tail(iris)
+```
+
+## tail of iris
+
+all of iris
+
+:::

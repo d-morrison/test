@@ -1,0 +1,34 @@
+---
+title: "supplemental subfigures - compact"
+format: 
+  html:
+    echo: false
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+
+---
+
+See @suppfig-subfigs-1 and @suppfig-subfigs-2:
+
+::: {#suppfig-subfigs}
+
+```{r}
+#| fig-width: 2
+#| fig-height: 3
+#| layout-ncol: 2
+#| layout: [[ 50, 50 ]]
+#| fig-subcap:
+#|   - "Cars"
+#|   - "Pressure"
+
+plot(cars)
+plot(pressure)
+```
+
+Charts
+
+:::

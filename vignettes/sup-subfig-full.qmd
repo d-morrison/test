@@ -1,0 +1,43 @@
+---
+title: "supplemental subfigures - full"
+format: 
+  docx:
+    echo: false
+  html:
+    echo: false
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+
+---
+
+See @suppfig-subfigs-1 and @suppfig-subfigs-2:
+
+::: {#suppfig-subfigs layout-ncol="2"}
+
+:::: {#suppfig-subfigs-1}
+
+```{r}
+plot(cars)
+```
+
+Cars
+
+::::
+
+:::: {#suppfig-subfigs-2}
+
+```{r}
+plot(pressure)
+```
+
+Pressure
+
+::::
+
+Charts
+
+:::

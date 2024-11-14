@@ -1,0 +1,16 @@
+---
+title: "Untitled"
+format: pptx
+---
+
+## slide with fig div
+
+::: {#fig-graph1}
+
+```{r}
+plot(1:10)
+```
+
+A graph
+
+:::

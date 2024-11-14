@@ -17,37 +17,44 @@ format:
     embed-resources: true
     appendix-style: plain
     mainfont: serif
-editor: visual
+crossref:
+  appendix-title: "Supplemental Materials" # doesn't seem to work
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+    - kind: float
+      key: supptbl
+      reference-prefix: Table S
+      space-before-numbering: false
+
 ---
 
 ```{r}
 x <- "A test label"
 ```
 
-:::: {#fig-test layout-ncol=2}
+::::: {#suppfig-test layout="[[ 50, 50 ]]"}
 
-::: {#fig-test-1}
 ```{r}
-#| fig-width: 3
-plot(1:10)
+#| label: suppfig-test-1
+#| fig-cap: !expr x
+plot(cars)
+```
+
+
+```{r}
+#| label: suppfig-test-2
+#| fig-cap: !expr x
+plot(pressure)
 ```
 
 `{r} x`
-:::
 
-::: {#fig-test-2}
-```{r}
-#| fig-width: 3
-plot(1:10)
-```
+:::::
 
-`{r} x`
-:::
-
-`{r} x`
-::::
-
-See @fig-test-2.
+See @fig-test-2 and @suppfig-test-2
 
 {{< pagebreak >}}
 
@@ -57,7 +64,6 @@ temp = "Speed and Stopping Distances of Cars"
 
 ```{r}
 #| label: "fig-first-only"
-#| fig-align: center
 #| fig-cap: "Estimated event sequence models, stratified by sex, first visits only"
 #| layout-ncol: 2
 #| fig-subcap:
@@ -67,3 +73,69 @@ temp = "Speed and Stopping Distances of Cars"
 plot(cars)
 plot(pressure)
 ```
+
+::: {#fig-first-only layout="[[ 50, 50 ]]" layout-ncol="2"}
+
+```{r}
+#| fig-subcap:
+#|   - "Males1"
+#|   - "Females1"
+#| fig-width: 2
+plot(cars)
+plot(pressure)
+```
+
+figure 50/50
+
+:::
+
+
+::: {#suppfig-second layout="[[ 50, 50 ]]"}
+
+```{r}
+#| label: suppfig-second-1
+#| fig-cap: "males1"
+
+plot(cars)
+```
+
+```{r}
+#| label: suppfig-second-2
+#| fig-cap: "females1"
+plot(pressure)
+```
+
+second figure
+
+:::
+
+See @fig-subfigs-1 and @fig-subfigs-2:
+
+::: {#fig-subfigs layout="[[ 50, 50 ]]"}
+
+:::: {#fig-subfigs-1}
+
+```{r}
+#| fig-width: 2
+#| fig-height: 3
+plot(cars)
+```
+
+Cars
+
+::::
+
+:::: {#fig-subfigs-2}
+
+```{r}
+#| fig-width: 2
+#| fig-height: 3
+plot(pressure)
+```
+
+Pressure
+
+::::
+Charts
+
+:::

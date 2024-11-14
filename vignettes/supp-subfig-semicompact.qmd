@@ -1,0 +1,38 @@
+---
+title: "supplemental figures - semicompact"
+format: 
+  html:
+    echo: false
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+---
+
+From <https://github.com/quarto-dev/quarto-cli/discussions/7022#discussioncomment-7116311>:
+
+See @fig-subfigs-1 and @fig-subfigs-2.
+
+::: {#suppfig-subfigs layout="[[ 50, 50 ]]"}
+
+```{r}
+#| label: fig-subfigs-1
+#| fig-cap: Cars
+#| fig-width: 2
+#| fig-height: 3
+plot(cars)
+```
+
+```{r}
+#| label: fig-subfigs-2
+#| fig-cap: Pressure
+#| fig-width: 2
+#| fig-height: 3
+plot(pressure)
+```
+
+Charts
+
+:::

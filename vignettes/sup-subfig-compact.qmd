@@ -1,6 +1,8 @@
 ---
 title: "supplemental subfigures - compact"
 format: 
+  docx:
+    echo: false
   html:
     echo: false
 crossref:
@@ -17,10 +19,7 @@ See @suppfig-subfigs-1 and @suppfig-subfigs-2:
 ::: {#suppfig-subfigs}
 
 ```{r}
-#| fig-width: 2
-#| fig-height: 3
 #| layout-ncol: 2
-#| layout: [[ 50, 50 ]]
 #| fig-subcap:
 #|   - "Cars"
 #|   - "Pressure"

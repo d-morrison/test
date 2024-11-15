@@ -1,21 +1,39 @@
 ---
 title: "supplemental figures - semicompact"
 format: 
+  docx:
+    echo: false
   html:
     echo: false
 crossref:
   custom:
     - kind: float
       key: suppfig
-      reference-prefix: Figure S
-      space-before-numbering: false
+      reference-prefix: Supplementary Figure
+      space-before-numbering: true
 ---
 
 From <https://github.com/quarto-dev/quarto-cli/discussions/7022#discussioncomment-7116311>:
 
-See @fig-subfigs-1 and @fig-subfigs-2.
+```{r}
+#| label: fig-dummy
+#| fig-cap: "dummy figure"
+plot(1:10)
+```
 
-::: {#suppfig-subfigs layout="[[ 50, 50 ]]"}
+:::{#suppfig-dummy}
+
+```{r}
+plot(1:10)
+```
+
+dummy figure 2
+
+:::
+
+See Supplementary Figure @suppfig-subfigs, specifically [Supplementary Figure @fig-subfigs-1] and [Supplementary Figure @fig-subfigs-2]
+
+::: {#suppfig-subfigs layout-ncol="2"}
 
 ```{r}
 #| label: fig-subfigs-1

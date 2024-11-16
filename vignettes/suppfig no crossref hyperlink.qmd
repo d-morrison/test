@@ -1,0 +1,37 @@
+---
+title: "supplemental figures - no crossref"
+format: 
+  docx:
+    echo: false
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      reference-prefix: Figure S
+      ref-hyperlink: false
+      space-before-numbering: false
+
+---
+
+See @fig-one and @suppfig-two:
+
+::: {#fig-one}
+
+```{r}
+#| fig-height: 2.5
+plot(pressure)
+```
+
+Pressure
+:::
+
+::: {#suppfig-two}
+
+```{r}
+#| fig-height: 2.5
+plot(cars)
+```
+
+Cars
+
+:::

@@ -1,0 +1,37 @@
+---
+title: "subfig pagebreaks"
+format: 
+  docx:
+    fig-cap-location: top
+    echo: false
+---
+
+
+::: {#suppfig-pvd_chosen_subtypes_linegraphs}
+
+```{r}
+#| label: fig-subfig-1
+#| fig-cap:
+#|    - "Subfig 1"
+
+plot(1:10)
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: fig-subfig-2
+#| fig-cap:
+#|    - "Subfig 2"
+
+plot(10:1)
+
+```
+
+Test title
+
+:::
+
+{{< pagebreak >}}
+

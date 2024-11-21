@@ -5,7 +5,7 @@ format:
     filters:
      - at: post-quarto
        path: appendix_numbering.lua
-    number-sections: true
+    number-sections: false
 
 crossref: 
   appendix-title: "Banana"
@@ -25,7 +25,7 @@ crossref:
 
 ## Another Section {#sec-main-1}
 
-See also @sec-main-1, @sec-app1, @suppfig-banana, @supptab-apple, [Supplemental Tables S -@supptab-apple] and @apx-two
+See also @sec-main-1, @sec-app1, @suppfig-banana, @supptab-apple, [Supplemental Tables S -@supptab-apple] and @sec-apx-two
 
 # Appendix {.appendix}
 
@@ -33,7 +33,7 @@ See also @sec-main-1, @sec-app1, @suppfig-banana, @supptab-apple, [Supplemental 
 
 Something here.
 
-## Appendix Section {#apx-two .appendix}
+## Appendix Section {#sec-apx-two .appendix}
 
 Content for the appendix.
 

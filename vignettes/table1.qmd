@@ -8,9 +8,11 @@ library(dplyr)
 data(starwars)
 
 library(table1)
-starwars |> table1(
-  x = ~ sex | homeworld, 
-  na.is.category = TRUE) 
+starwars |> 
+  filter(!is.na(homeworld)) |> 
+  table1(
+  x = ~ species | homeworld, 
+  na.is.category = TRUE)
 
 ```
 

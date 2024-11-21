@@ -1,0 +1,27 @@
+---
+title: "flextable"
+format: docx
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+```{r}
+library(flextable)
+iris |> head() |> flextable()
+```
+
+```{r}
+iris |> head() |> flextable() |> 
+fontsize(size = 8, part = "all")
+```
+
+```{r}
+
+iris |> head() |> flextable() |> 
+flextable::font(fontname = "Gill sans MT", part = 'all')
+```
+

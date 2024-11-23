@@ -1,0 +1,6 @@
+---
+title: "nested markup"
+format: html
+---
+
+**main sentence *italics* more text **

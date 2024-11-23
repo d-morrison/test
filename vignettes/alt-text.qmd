@@ -1,0 +1,28 @@
+---
+title: "alt-text.qmd"
+format: html
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+```{r}
+#| label: fig-fig1
+#| fig-cap: "numbers 1-10"
+#| fig-alt: "a graph"
+
+plot(1:10)
+```
+
+::: {#fig-fig2 fig-alt="A drawing of an elephant."}
+
+```{r}
+plot(1:10)
+```
+
+"numbers 1-10"
+
+:::

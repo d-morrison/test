@@ -1,0 +1,11 @@
+---
+title: "table split"
+format: docx
+---
+
+## Quarto
+
+```{r ft.split=FALSE}
+library(flextable)
+regulartable(iris)
+```

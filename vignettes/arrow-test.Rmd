@@ -1,0 +1,30 @@
+---
+title: "arrow-test"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{arrow-test}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(dplyr)
+library(arrow)
+
+arrow::write_dataset(iris[-1, ], "iris.parquet")
+con = arrow::open_dataset("iris.parquet")
+
+ch <- unique(iris$Species) 
+
+con |>
+  filter(Species %in% ch) |>
+  collect() 
+
+```

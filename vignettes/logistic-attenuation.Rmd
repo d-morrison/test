@@ -1,0 +1,108 @@
+---
+title: "logistic-attenuation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{logistic-attenuation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(test)
+```
+
+```{r}
+
+n = 100000 # minimize standard error
+set.seed(1)
+x1 = rnorm(n = n, sd = 1)
+x2 = x1 + rnorm(n = n, sd = 0.1)
+plot(x2 ~ x1)
+y = rbinom(n = n, size = 1, prob = arm::invlogit(x1))
+glm1 = glm(y ~ x1, family = binomial)
+confint.default(glm1)
+
+glm2 = glm(y ~ x1 + x2, family = binomial)
+confint.default(glm2)
+
+glm3 = glm(y ~ x2, family = binomial)
+confint.default(glm3)
+
+
+```
+
+
+```{r}
+
+n = 100000 # minimize standard error
+set.seed(1)
+x1 = rnorm(n = n, sd = 1)
+x2 = x + rnorm(n = n, sd = 0.1)
+y = rbinom(n = n, size = 1, prob = arm::invlogit(x1 + x2))
+
+glm1 = glm(y ~ x1, family = binomial)
+confint.default(glm1)
+
+glm2 = glm(y ~ x1 + x2, family = binomial)
+confint.default(glm2)
+
+glm3 = glm(y ~ x2, family = binomial)
+confint.default(glm3)
+
+```
+
+# uncorrelated covariates
+
+```{r}
+
+n = 1000000 # minimize standard error
+set.seed(1)
+x1 = rnorm(n = n, sd = 1)
+x2 = rnorm(n = n, sd = 0.1)
+y = rbinom(n = n, size = 1, prob = arm::invlogit(x1 + x2))
+
+glm1 = glm(y ~ x1, family = binomial())
+coef(summary(glm1))
+confint.default(glm1)
+
+glm2 = glm(y ~ x1 + x2, family = binomial)
+coef(summary(glm2))
+confint.default(glm2)
+
+glm3 = glm(y ~ x2, family = binomial)
+coef(summary(glm3))
+confint.default(glm3)
+
+```
+
+# mediation
+
+```{r}
+
+n = 1000000 # minimize standard error
+set.seed(1)
+x1 = rnorm(n = n, sd = 1)
+x2 = x1 + rnorm(n = n, sd = 0.1)
+y = rbinom(n = n, size = 1, prob = arm::invlogit(x2))
+
+glm1 = glm(y ~ x1, family = binomial)
+coef(summary(glm1))
+confint.default(glm1)
+
+glm2 = glm(y ~ x1 + x2, family = binomial)
+coef(summary(glm2))
+confint.default(glm2)
+
+glm3 = glm(y ~ x2, family = binomial)
+coef(summary(glm3))
+confint.default(glm3)
+
+```
+

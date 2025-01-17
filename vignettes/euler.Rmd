@@ -1,0 +1,44 @@
+---
+title: "euler"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{euler}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+
+f1 = function(n) (1+1/(n))^(n)
+f2 = Vectorize(
+  function(n) {
+  sum(1/factorial(0:n))
+})
+library(dplyr)
+tab1 = tibble(
+  n = 0:30,
+  f1 = f1(n),
+  f2 = f2(n)
+)
+
+
+```
+
+```{r}
+library(ggplot2)
+ggplot(tab1) + 
+  aes(x = n) +
+  xlim(0, 30) +
+  geom_point(aes(y = f1, color = "f1")) +
+  geom_point(aes(y = f2, color = "f2")) +
+  geom_function(n = 1001, fun = f1, aes(color = "f1"), alpha = .5) +
+  geom_function(n = 1001, fun = f2, aes(color = "f2"), alpha = .5)
+```
+

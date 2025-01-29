@@ -1,0 +1,28 @@
+---
+title: "glue_labels"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(labelled)
+library(glue)
+library(dplyr)
+test = tibble(
+  a = 1 |> set_label_attribute("a1"),
+  b = glue::glue("two") |> set_label_attribute("b2")
+)
+test$b |> get_label_attribute()
+
+# filter() strips the variable label from column `b`
+dplyr::filter(test)$b |> get_label_attribute()
+
+# filter() doesn't strip the label from column `a`
+dplyr::filter(test)$a |> get_label_attribute()
+```
+

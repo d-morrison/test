@@ -5,11 +5,11 @@ editor: visual
 ---
 
 ## using R expressions in `#| eval`
+
 ```{r}
 fit_models = FALSE
 # fit_models = TRUE
 ```
-
 
 ```{r}
 #| eval: !expr fit_models
@@ -25,15 +25,12 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
-
-
-
 The general form of a two-by-two table is shown in \@ref(tab:df-print)
 
-|               | Event | Non-Event | Total
-|-------------- | ------ | ---------- | ----- 
-|Exposed        | a      | b | a+b
-|Non-exposed    | c      | d | c+d
-|Total         | a+c   | b+d | a+b+c+d
+|             | Event | Non-Event | Total   |
+|-------------|-------|-----------|---------|
+| Exposed     | a     | b         | a+b     |
+| Non-exposed | c     | d         | c+d     |
+| Total       | a+c   | b+d       | a+b+c+d |
 
-: A generic 2x2 table (\#tab:df-print)
+: A generic 2x2 table (#tab:df-print)

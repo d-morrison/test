@@ -1,0 +1,29 @@
+---
+title: "stringr-attributes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{stringr-attributes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+
+c("a", "b") |> 
+    structure(test = "hi") |> 
+    attr("test")
+
+# attribute lost after `str_replace()`:
+c("a", "b") |> 
+    structure(test = "hi") |> 
+    stringr::str_replace("b", "c") |>
+    attr("test")
+
+```

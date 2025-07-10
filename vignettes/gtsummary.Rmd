@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(gtsummary)
 
 tbl1 <- 
-  trial %>%
+  trial |>
     tbl_summary(
         by = response, 
         include = c(age, grade, trt), 
@@ -28,11 +28,11 @@ tbl1 <-
           age ~ "continuous"),
         missing = "no",
         percent = "row"
-    ) %>%
+    ) |>
     add_p()
 
 tbl2 <- 
-  trial %>%
+  trial |>
   filter(is.na(response)) |> 
     tbl_summary(
         # by = response, 

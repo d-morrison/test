@@ -1,0 +1,12 @@
+---
+title: "Untitled"
+format: 
+  docx:
+    keep-md: true
+---
+
+## Quarto
+
+Raynaud's syndrome,
+<!-- and pulmonary fibrosis, -->
+since these conditions were too rare to analyze separately

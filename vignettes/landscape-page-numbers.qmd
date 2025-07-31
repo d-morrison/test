@@ -1,0 +1,17 @@
+---
+title: "landscape page numbers"
+format: docx
+---
+
+{{< lipsum 2 >}}
+
+::: landscape
+
+{{< lipsum 2 >}}
+
+:::
+
+page numbers will start here:
+
+{{< lipsum 2 >}}
+

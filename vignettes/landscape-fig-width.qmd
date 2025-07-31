@@ -1,0 +1,21 @@
+---
+title: "landscape-fig-width"
+format: docx
+---
+
+::: landscape
+```{r}
+#| fig-width: 9
+#| fig-height: 5
+plot(1:10)
+```
+
+:::
+
+see
+
+https://github.com/quarto-dev/quarto-cli/discussions/12859
+
+and 
+
+https://github.com/jgm/pandoc/issues/10916

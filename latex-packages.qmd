@@ -1,0 +1,31 @@
+---
+title: "Quarto Math"
+format:
+  pdf:
+   pdf-engine: xelatex
+   include-in-header: 
+     text: | 
+       \usepackage{statmath}
+       \usepackage{accents}
+  html:
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+          window.MathJax = {
+            loader: {
+              load: ['[tex]/accents']
+              
+            },
+            tex: {
+              packages: {'[+]': ['accents']}
+            }
+          };
+          </script>
+---
+
+\renewcommand{\vec}[1]{\undertilde{#1}}
+
+$$X_n \indist X$$
+
+$$\vec{X}$$

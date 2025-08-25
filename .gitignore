@@ -14,3 +14,7 @@ docs
 *.pdf
 test_files
 test.html
+data
+heading-with-insert_files
+latex-packages_files
+problem-without-heading-marker_files

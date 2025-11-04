@@ -1,0 +1,23 @@
+---
+title: "plotly-fullscreen"
+format: html
+---
+
+---
+title: "Zoom Plotly?"
+format: html
+---
+
+```{r}
+#| warn: false
+#| message: false
+
+suppressPackageStartupMessages({
+  library(bslib)
+  library(plotly)
+})
+
+plot_ly(x = diamonds$cut) |> 
+  bslib::card(full_screen = TRUE)
+
+```

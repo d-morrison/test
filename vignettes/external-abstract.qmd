@@ -1,0 +1,7 @@
+---
+title: "external-abstract"
+format: html
+abstract: _lipsum.qmd
+---
+
+sadly, doesn't work.

@@ -1,0 +1,15 @@
+---
+title: "python demo"
+format: html
+---
+
+
+```{python}
+import numpy
+```
+
+
+```{python}
+#| label: fig-1
+import numpy
+```

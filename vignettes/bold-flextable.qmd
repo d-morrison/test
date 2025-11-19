@@ -1,0 +1,9 @@
+---
+title: "bold-flextable"
+format: html
+---
+
+```{r}
+library(flextable)
+head(iris) |> flextable() |> bold(i = 1:6, j = 1:4, bold = head(iris)[,1:4] > 5)
+```

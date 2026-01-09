@@ -1,0 +1,121 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+name: test-coverage.yaml
+
+permissions: read-all
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Install JAGS (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          curl.exe -o wjags.exe -L0 -k --url https://downloads.sourceforge.net/project/mcmc-jags/JAGS/4.x/Windows/JAGS-4.3.1.exe
+          wjags.exe /S
+          del wjags.exe
+        shell: cmd
+      
+      # from https://github.com/ku-awdc/runjags/issues/2:
+      - name: Install JAGS (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          sudo curl --location https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Mac%20OS%20X/JAGS-4.3.1.pkg -o /usr/local/JAGS-4.3.1.pkg
+          sudo installer -pkg /usr/local/JAGS-4.3.1.pkg -target /usr/local/bin/
+      
+      - name: Install JAGS (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jags
+      
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::covr, any::xml2
+          needs: test, coverage
+      
+      - name: "install rjags"
+        run: |
+          install.packages("rjags",
+                    repos = "https://cloud.r-project.org",
+                    type = "source",
+                    verbose = TRUE)
+           withr::local_options(warn = 2)
+           library(rjags)
+           library(runjags)
+           runjags::findJAGS()
+           runjags::testjags()
+        shell: Rscript {0}
+      
+
+      - name: Test coverage
+        run: |
+          cov <- covr::package_coverage(
+            quiet = FALSE,
+            clean = FALSE,
+            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
+          )
+          print(cov)
+          covr::to_cobertura(cov)
+        shell: Rscript {0}
+
+      - name: Show testthat output
+        if: always()
+        run: |
+          ## --------------------------------------------------------------------
+          find '${{ runner.temp }}/package' -name 'testthat.Rout*' -exec cat '{}' \; || true
+        shell: bash
+
+      - name: Upload artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        # https://github.com/actions/upload-artifact?tab=readme-ov-file
+        with:
+          name: coverage-test-failures
+          path: ${{ runner.temp }}/package
+
+      # copied from https://github.com/dieghernan/nominatimlite/actions/runs/12116366823/workflow
+      - name: Create Junit Report
+        if: always()
+        run: |
+          test_out <- path.expand(file.path(getwd(), "junit.xml"))
+          testthat::test_local(reporter = testthat::JunitReporter$new(test_out))
+        shell: Rscript {0}
+      
+      # Upload test results to Codecov
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          # Fail if error if not on PR, or if on PR and token is given
+          fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
+          files: ./junit.xml
+          report_type: test_results
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      # Upload coverage to Codecov
+      - name: Upload coverage to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          # Fail if error if not on PR, or if on PR and token is given
+          fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
+          # v5 renamed from `file` and `plugin`; see https://github.com/codecov/codecov-action?tab=readme-ov-file#migration-guide
+          files: ./cobertura.xml
+          plugins: noop
+          disable_search: true
+          token: ${{ secrets.CODECOV_TOKEN }}

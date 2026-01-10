@@ -38,11 +38,22 @@ jobs:
           http-user-agent: "release"
           use-public-rspm: true
 
+      - name: Check if README.Rmd exists
+        id: check_readme
+        run: |
+          if [ -f "README.Rmd" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - uses: r-lib/actions/setup-r-dependencies@v2
+        if: steps.check_readme.outputs.exists == 'true'
         with:
           extra-packages: local::.
 
       - name: Render README
+        if: steps.check_readme.outputs.exists == 'true'
         run: |
           options(
             crayon.enabled = TRUE,

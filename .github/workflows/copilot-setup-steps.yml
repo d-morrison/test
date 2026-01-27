@@ -89,6 +89,7 @@ jobs:
             any::lintr
             any::spelling
             any::rmarkdown
+            any::runjags
           needs: check
       
       # Install rjags from source to ensure proper linking with JAGS

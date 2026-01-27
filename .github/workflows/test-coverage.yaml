@@ -28,12 +28,23 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Check if tests exist
+        id: check_tests
+        run: |
+          if [ -d "tests/testthat" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - uses: r-lib/actions/setup-r-dependencies@v2
+        if: steps.check_tests.outputs.exists == 'true'
         with:
           extra-packages: any::covr, any::xml2
           needs: test, coverage
       
       - name: "install rjags"
+        if: steps.check_tests.outputs.exists == 'true'
         run: |
           install.packages("rjags",
                     repos = "https://cloud.r-project.org",
@@ -48,6 +59,7 @@ jobs:
       
 
       - name: Test coverage
+        if: steps.check_tests.outputs.exists == 'true'
         run: |
           cov <- covr::package_coverage(
             quiet = FALSE,
@@ -59,14 +71,14 @@ jobs:
         shell: Rscript {0}
 
       - name: Show testthat output
-        if: always()
+        if: always() && steps.check_tests.outputs.exists == 'true'
         run: |
           ## --------------------------------------------------------------------
           find '${{ runner.temp }}/package' -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
 
       - name: Upload artifacts
-        if: failure()
+        if: failure() && steps.check_tests.outputs.exists == 'true'
         uses: actions/upload-artifact@v4
         # https://github.com/actions/upload-artifact?tab=readme-ov-file
         with:
@@ -75,7 +87,7 @@ jobs:
 
       # copied from https://github.com/dieghernan/nominatimlite/actions/runs/12116366823/workflow
       - name: Create Junit Report
-        if: always()
+        if: always() && steps.check_tests.outputs.exists == 'true'
         run: |
           test_out <- path.expand(file.path(getwd(), "junit.xml"))
           testthat::test_local(reporter = testthat::JunitReporter$new(test_out))
@@ -83,7 +95,7 @@ jobs:
       
       # Upload test results to Codecov
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.check_tests.outputs.exists == 'true' }}
         uses: codecov/codecov-action@v5
         with:
           # Fail if error if not on PR, or if on PR and token is given
@@ -94,7 +106,7 @@ jobs:
 
       # Upload coverage to Codecov
       - name: Upload coverage to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.check_tests.outputs.exists == 'true' }}
         uses: codecov/codecov-action@v5
         with:
           # Fail if error if not on PR, or if on PR and token is given

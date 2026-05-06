@@ -40,7 +40,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         if: steps.check_tests.outputs.exists == 'true'
         with:
-          extra-packages: any::covr, any::xml2
+          extra-packages: any::covr, any::xml2, any::runjags, any::testthat
           needs: test, coverage
       
       - name: "install rjags"

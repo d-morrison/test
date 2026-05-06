@@ -6,6 +6,10 @@ on:
 
 name: Commands
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   document:
     if: ${{ github.event.issue.pull_request && (github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER') && startsWith(github.event.comment.body, '/document') }}
@@ -38,7 +42,7 @@ jobs:
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add man/\* NAMESPACE
-          git commit -m 'Document'
+          git commit -m 'Document' || echo 'No changes to commit'
 
       - uses: r-lib/actions/pr-push@v2
         with:
@@ -71,8 +75,8 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add \*.R
-          git commit -m 'Style'
+          git add R/**/*.R
+          git commit -m 'Style' || echo 'No changes to commit'
 
       - uses: r-lib/actions/pr-push@v2
         with:

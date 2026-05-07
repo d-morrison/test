@@ -6,3 +6,17 @@
 ^pkgdown$
 ^\.github$
 ^data-raw$
+^vignettes/euler\.Rmd$
+^vignettes/logistic-attenuation\.Rmd$
+^vignettes/fraction_and_pct\.Rmd$
+^vignettes/greek-in-colnames\.Rmd$
+^vignettes/multidimensional-table-pander\.Rmd$
+^vignettes/pnorm-rounding\.Rmd$
+^vignettes/rowsum\.Rmd$
+^vignettes/table-split\.Rmd$
+^vignettes/units\.Rmd$
+^comment-auto-format\.R$
+^template1\.docx$
+^test\.Rmd$
+^test\.html$
+^test\.qmd$

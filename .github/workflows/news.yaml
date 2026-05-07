@@ -1,0 +1,27 @@
+name: Check NEWS.md Changelog
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, labeled, unlabeled]
+    branches:
+      - main
+jobs:
+  Check-Changelog:
+    name: Check Changelog Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check if NEWS.md exists
+        id: check_news
+        run: |
+          if [ -f "NEWS.md" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "NEWS.md does not exist - skipping changelog check"
+          fi
+      
+      - uses: UCD-SERG/changelog-check-action@v2
+        if: steps.check_news.outputs.exists == 'true'
+        with:
+          changelog: NEWS.md

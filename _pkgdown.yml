@@ -2,3 +2,19 @@ url: https://d-morrison.github.io/test/
 template:
   bootstrap: 5
 
+articles:
+- title: All vignettes
+  contents:
+  - alt-text
+  - crossrefs
+  - crossrefs-no-heading-numbers
+  - '!euler'
+  - '!fraction_and_pct'
+  - '!greek-in-colnames'
+  - '!logistic-attenuation'
+  - '!multidimensional-table-pander'
+  - '!pnorm-rounding'
+  - '!rowsum'
+  - '!table-split'
+  - '!units'
+

@@ -8,7 +8,6 @@ crossref:
     - kind: float
       key: suppfig
       reference-prefix: Figure S
-      ref-hyperlink: false
       space-before-numbering: false
 
 ---

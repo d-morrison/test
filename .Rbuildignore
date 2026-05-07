@@ -15,3 +15,8 @@
 ^vignettes/rowsum\.Rmd$
 ^vignettes/table-split\.Rmd$
 ^vignettes/units\.Rmd$
+^comment-auto-format\.R$
+^template1\.docx$
+^test\.Rmd$
+^test\.html$
+^test\.qmd$

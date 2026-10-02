@@ -6,3 +6,5 @@
 ^pkgdown$
 ^\.github$
 ^data-raw$
+^AGENTS\.md$
+^\.claude$
